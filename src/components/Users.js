@@ -17,10 +17,19 @@ class Users extends Component {
 
     }
 
+    async addTwoMoreUsers() {
+        let {chosenId} = this.state;
+        let [one, two] = await this.userService.getTwoUsers2(chosenId + 1, chosenId + 2);
+        // let users3 = [this.state.users, users2];
+        this.setState({users: [...this.state.users, one, two]});
+
+        this.setState({chosenId: this.state.chosenId + 2});
+    }
 
     resetId() {
         this.setState({
-            chosenId: 0
+            chosenId: 0,
+            users: []
         })
     }
 
@@ -31,7 +40,7 @@ class Users extends Component {
         return (
 
             <div>
-                <button disabled={chosenId === 10 ? true : false} onClick={() => this.addTwoUsers2()}>Add two more users</button>
+                <button disabled={chosenId === 10 ? true : false} onClick={() => this.addTwoMoreUsers()}>Add two more users</button>
                 <button disabled={chosenId === 0 ? true : false} onClick={() => this.resetId()}>Reset</button>
                 {
                     chosenId !== 0 ?
