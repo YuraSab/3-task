@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import Users from "./components/Users";
 
-class App extends Component {
+class User extends Component {
     render() {
+
+        let {item} = this.props;
+
         return (
             <div>
-              <Users/>
+                {item.id}. {item.name}
             </div>
         );
     }
 }
 
-export default App;
+export default User;
